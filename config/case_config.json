@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "route": {
+    "origin": "Moscow",
+    "destination": "Saint Petersburg",
+    "distance_km": 679,
+    "depot_location": "Obukhovo"
+  },
+  "fleet": {
+    "total_trains": 43,
+    "formation_cars": 8,
+    "hot_reserve": {
+      "count": 4,
+      "maintenance_allowed": false,
+      "required_by_location": {
+        "Moscow": 2,
+        "Saint Petersburg": 2
+      },
+      "minimum_mileage_buffer_km": 1493
+    }
+  },
+  "readiness": {
+    "minimum_fraction": 0.89,
+    "minimum_ready_trains": 39,
+    "unavailable_stages": [
+      "cleaning_and_equipping",
+      "planned_maintenance",
+      "additional_maintenance",
+      "post_maintenance_transfer",
+      "preparation_for_service"
+    ]
+  },
+  "maintenance_cycles": [
+    {
+      "code": "IS100",
+      "interval_km": 12500,
+      "tolerance_fraction": 0.1,
+      "downtime_hours": 2,
+      "splittable": false
+    },
+    {
+      "code": "IS200",
+      "interval_km": 25000,
+      "tolerance_fraction": 0.2,
+      "downtime_hours": 4,
+      "splittable": false
+    },
+    {
+      "code": "IS510",
+      "interval_km": 75000,
+      "tolerance_fraction": 0.2,
+      "downtime_hours": 10,
+      "splittable": true
+    },
+    {
+      "code": "IS520",
+      "interval_km": 150000,
+      "tolerance_fraction": 0.2,
+      "downtime_hours": 16,
+      "splittable": true
+    },
+    {
+      "code": "IS530",
+      "interval_km": 300000,
+      "tolerance_fraction": 0.2,
+      "downtime_hours": 36,
+      "splittable": true
+    },
+    {
+      "code": "IS540",
+      "interval_km": 600000,
+      "tolerance_fraction": 0.2,
+      "downtime_hours": 56,
+      "splittable": true
+    },
+    {
+      "code": "IS600",
+      "interval_km": 1200000,
+      "tolerance_fraction": 0.2,
+      "downtime_hours": 384,
+      "splittable": false
+    },
+    {
+      "code": "IS700",
+      "interval_km": 2400000,
+      "tolerance_fraction": 0.2,
+      "downtime_hours": 575,
+      "splittable": false
+    }
+  ],
+  "maintenance_hierarchy": {
+    "higher_cycle_includes_lower_cycles": true,
+    "perform_only_highest_due_cycle": true
+  },
+  "maintenance_locations": {
+    "planned_cycles": {
+      "allowed_locations": [
+        "Obukhovo"
+      ]
+    },
+    "unplanned_maintenance": {
+      "allowed_locations": [
+        "Obukhovo",
+        "Moscow"
+      ]
+    },
+    "wheelset_replacement": {
+      "allowed_locations": [
+        "Obukhovo",
+        "Moscow"
+      ]
+    }
+  },
+  "depot_resources": {
+    "location": "Obukhovo",
+    "max_concurrent_trains_on_service": 5,
+    "positions": {
+      "inspection_and_service": {
+        "capacity_trains": 8,
+        "supported_cycles": [
+          "IS100",
+          "IS200",
+          "IS510",
+          "IS520",
+          "IS530",
+          "IS540"
+        ]
+      },
+      "revision": {
+        "capacity_trains": 3,
+        "supported_cycles": [
+          "IS600",
+          "IS700"
+        ]
+      }
+    }
+  },
+  "cleaning": {
+    "after_every_n_trips": 4,
+    "duration_hours_range": [
+      2,
+      3
+    ],
+    "default_duration_hours": 2.5,
+    "facilities": {
+      "Moscow": {
+        "capacity_trains": 4
+      },
+      "Saint Petersburg": {
+        "capacity_trains": 4
+      }
+    }
+  },
+  "unplanned_downtime": {
+    "IS100_IS540_fraction_of_planned": 0.3,
+    "IS600_IS700_fraction_of_planned": 0.1
+  },
+  "wheel_tuning": {
+    "interval_km": 200000,
+    "capacity_trains": 1,
+    "wheelsets_per_train": 32,
+    "cars_per_train": 8,
+    "tandem_wheels_per_setup": 2,
+    "duration_hours_per_car": 2,
+    "can_run_in_parallel_with_maintenance": false,
+    "allowed_sequence_in_same_visit": [
+      "before_maintenance",
+      "after_maintenance"
+    ]
+  },
+  "optimization_priorities": [
+    "operational_readiness",
+    "depot_load_leveling"
+  ]
+}
