@@ -14,14 +14,14 @@ from pathlib import Path
 
 
 CYCLE_COLORS = {
-    "IS100": "#38bdf8",
-    "IS200": "#22c55e",
-    "IS510": "#a78bfa",
-    "IS520": "#f59e0b",
-    "IS530": "#f97316",
-    "IS540": "#ef4444",
-    "IS600": "#ec4899",
-    "IS700": "#64748b",
+    "IS100": "#2563eb",
+    "IS200": "#16a34a",
+    "IS510": "#9333ea",
+    "IS520": "#ea580c",
+    "IS530": "#db2777",
+    "IS540": "#dc2626",
+    "IS600": "#0891b2",
+    "IS700": "#4b5563",
 }
 
 
@@ -111,68 +111,69 @@ def build_html(jobs: list[dict[str, object]]) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maintenance jobs</title>
+  <title>План технического обслуживания</title>
   <style>
     * {{ box-sizing: border-box; }}
-    body {{ margin: 0; background: #f1f5f9; color: #0f172a; font: 14px/1.4 Arial, sans-serif; }}
-    main {{ max-width: 1400px; margin: 0 auto; padding: 28px; }}
-    h1 {{ margin: 0 0 4px; font-size: 28px; }}
-    h2 {{ margin: 28px 0 12px; font-size: 20px; }}
-    .sub {{ margin: 0; color: #475569; }}
-    .cards {{ display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 12px; margin-top: 20px; }}
-    .card, .panel {{ background: white; border-radius: 10px; box-shadow: 0 1px 3px #cbd5e1; }}
-    .card {{ padding: 16px; }}
-    .card small {{ display: block; color: #64748b; }}
-    .card strong {{ display: block; margin-top: 5px; font-size: 20px; }}
-    .controls {{ display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin-top: 20px; }}
-    label {{ display: grid; gap: 4px; color: #475569; font-size: 12px; }}
-    input, select {{ min-height: 34px; padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; color: #0f172a; }}
-    .panel {{ padding: 16px; overflow-x: auto; }}
-    .timeline-row {{ display: grid; grid-template-columns: 112px minmax(700px, 1fr); min-height: 32px; border-bottom: 1px solid #e2e8f0; }}
-    .train {{ padding: 7px 8px 7px 0; font-family: monospace; }}
-    .track {{ position: relative; min-height: 32px; background: repeating-linear-gradient(90deg, #f8fafc 0, #f8fafc calc(10% - 1px), #e2e8f0 calc(10% - 1px), #e2e8f0 10%); }}
-    .bar {{ position: absolute; top: 6px; height: 20px; min-width: 7px; padding: 2px 5px; overflow: hidden; border-radius: 4px; color: white; font-size: 11px; white-space: nowrap; }}
-    .range {{ display: flex; justify-content: space-between; margin-left: 112px; color: #64748b; font-size: 12px; }}
-    .legend {{ display: inline-flex; align-items: center; gap: 5px; margin: 0 14px 8px 0; }}
-    .legend i {{ width: 12px; height: 12px; border-radius: 2px; }}
+    body {{ margin: 0; background: #fff; color: #171717; font: 14px/1.4 Tahoma, Verdana, Arial, sans-serif; }}
+    main {{ max-width: 1280px; margin: 0 auto; padding: 24px; }}
+    h1 {{ margin: 0; font-size: 21px; font-weight: 600; }}
+    h2 {{ margin: 28px 0 8px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }}
+    .sub {{ margin: 3px 0 0; color: #666; font-size: 13px; }}
+    .cards {{ display: flex; flex-wrap: wrap; gap: 0; margin-top: 16px; border-top: 1px solid #d4d4d4; border-bottom: 1px solid #d4d4d4; }}
+    .card {{ min-width: 170px; padding: 10px 22px 10px 0; margin-right: 22px; border-right: 1px solid #d4d4d4; }}
+    .card:last-child {{ border-right: 0; }}
+    .card small {{ display: block; color: #666; font-size: 12px; }}
+    .card strong {{ display: block; margin-top: 2px; font-size: 16px; font-weight: 600; }}
+    .controls {{ display: flex; flex-wrap: wrap; gap: 14px; align-items: end; margin-top: 18px; }}
+    label {{ display: grid; gap: 4px; color: #555; font-size: 12px; }}
+    input, select {{ min-height: 30px; padding: 3px 6px; border: 1px solid #999; border-radius: 0; background: #fff; color: #171717; font: inherit; }}
+    .panel {{ overflow-x: auto; border: 1px solid #d4d4d4; }}
+    .timeline-row {{ display: grid; grid-template-columns: 125px minmax(700px, 1fr); min-height: 28px; border-bottom: 1px solid #e5e5e5; }}
+    .train {{ padding: 6px 8px; border-right: 1px solid #d4d4d4; font-family: monospace; font-size: 12px; }}
+    .track {{ position: relative; min-height: 28px; background: repeating-linear-gradient(90deg, #fff 0, #fff calc(10% - 1px), #e5e5e5 calc(10% - 1px), #e5e5e5 10%); }}
+    .bar {{ position: absolute; top: 5px; height: 18px; min-width: 5px; overflow: visible; border-radius: 0; font-size: 11px; line-height: 16px; white-space: nowrap; }}
+    .bar-code {{ display: inline-block; height: 18px; padding: 0 4px; background: #fff; border: 1px solid currentColor; font-weight: 700; }}
+    .range {{ display: flex; justify-content: space-between; margin: 5px 8px 5px 125px; color: #666; font-size: 11px; }}
+    .legend {{ display: inline-flex; align-items: center; gap: 4px; margin: 0 12px 7px 0; color: #555; font-size: 12px; }}
+    .legend i {{ width: 9px; height: 9px; border-radius: 0; }}
     table {{ width: 100%; border-collapse: collapse; white-space: nowrap; }}
-    th, td {{ padding: 9px; text-align: left; border-bottom: 1px solid #e2e8f0; }}
-    th {{ color: #475569; background: #f8fafc; }}
-    .badge {{ padding: 2px 6px; border-radius: 4px; background: #e2e8f0; font-family: monospace; }}
-    @media (max-width: 700px) {{ main {{ padding: 16px; }} .cards {{ grid-template-columns: repeat(2, 1fr); }} }}
+    th, td {{ padding: 7px 9px; text-align: left; border-bottom: 1px solid #e5e5e5; }}
+    th {{ color: #555; background: #f7f7f7; font-size: 12px; font-weight: 600; }}
+    .badge {{ font-family: monospace; }}
+    @media (max-width: 700px) {{ main {{ padding: 16px; }} .card {{ min-width: 50%; margin-right: 0; padding-right: 10px; }} }}
   </style>
 </head>
 <body>
   <main>
-    <h1>Maintenance jobs</h1>
-    <p class="sub">maintenance windows from the current forecast</p>
+    <h1>План технического обслуживания</h1>
+    <p class="sub">окна работ по текущему прогнозу</p>
     <section class="controls">
-      <label>start month<input id="start-month" type="month"></label>
-      <label>period<select id="period">
-        <option value="1">1 month</option>
-        <option value="3">3 months</option>
-        <option value="6">6 months</option>
-        <option value="12">12 months</option>
-        <option value="24">24 months</option>
-        <option value="all">all data</option>
+      <label>Месяц начала<input id="start-month" type="month"></label>
+      <label>Период<select id="period">
+        <option value="1">1 месяц</option>
+        <option value="3">3 месяца</option>
+        <option value="6">6 месяцев</option>
+        <option value="12">1 год</option>
+        <option value="24">2 года</option>
+        <option value="all">все данные</option>
       </select></label>
     </section>
     <section class="cards">
-      <div class="card"><small>jobs</small><strong id="job-count">—</strong></div>
-      <div class="card"><small>trains with jobs</small><strong id="train-count">—</strong></div>
-      <div class="card"><small>nearest deadline</small><strong id="nearest">—</strong></div>
-      <div class="card"><small>last deadline</small><strong id="last">—</strong></div>
+      <div class="card"><small>Задач</small><strong id="job-count">—</strong></div>
+      <div class="card"><small>Поездов</small><strong id="train-count">—</strong></div>
+      <div class="card"><small>Ближайший срок</small><strong id="nearest">—</strong></div>
+      <div class="card"><small>Последний срок</small><strong id="last">—</strong></div>
     </section>
-    <h2>Timeline</h2>
+    <h2>Временная шкала</h2>
     <div id="legend"></div>
     <section class="panel">
       <div class="range"><span id="range-start"></span><span id="range-end"></span></div>
       <div id="timeline"></div>
     </section>
-    <h2>Jobs</h2>
+    <h2>Задачи</h2>
     <section class="panel">
       <table>
-        <thead><tr><th>job</th><th>train</th><th>cycle</th><th>window opens</th><th>deadline</th><th>work</th><th>status</th></tr></thead>
+        <thead><tr><th>Задача</th><th>Поезд</th><th>Цикл</th><th>Начало окна</th><th>Крайний срок</th><th>Работа</th><th>Статус</th></tr></thead>
         <tbody id="jobs-table"></tbody>
       </table>
     </section>
@@ -246,7 +247,8 @@ def build_html(jobs: list[dict[str, object]]) -> str:
           const color = job.status === 'pending' ? (colors[job.cycle_code] || '#334155') : '#dc2626';
           const title = escapeText(job.cycle_code + ': ' + text(earliest) + ' — ' + text(latest));
           return '<span class="bar" title="' + title + '" style="left:' + left.toFixed(2) + '%;width:' +
-            width.toFixed(2) + '%;background:' + color + '">' + escapeText(job.cycle_code) + '</span>';
+            width.toFixed(2) + '%;background:' + color + '"><span class="bar-code" style="color:' +
+            color + '">' + escapeText(job.cycle_code) + '</span></span>';
         }}).join('');
         return '<div class="timeline-row"><div class="train">' + escapeText(train) +
           '</div><div class="track">' + bars + '</div></div>';

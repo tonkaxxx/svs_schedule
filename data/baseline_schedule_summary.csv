@@ -1,0 +1,10 @@
+scope,total_jobs,scheduled_jobs,unscheduled_jobs,blocked_hot_reserve_jobs,scheduled_downtime_hours
+all,2812,2556,256,0,8844.0
+IS100,1392,1392,0,0,2784.0
+IS200,930,930,0,0,3720.0
+IS510,234,234,0,0,2340.0
+IS520,119,0,119,0,0
+IS530,60,0,60,0,0
+IS540,32,0,32,0,0
+IS600,23,0,23,0,0
+IS700,22,0,22,0,0
