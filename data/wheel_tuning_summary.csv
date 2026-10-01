@@ -1,0 +1,2 @@
+total_jobs,scheduled_jobs,unscheduled_jobs,blocked_hot_reserve_jobs,passenger_window_conflicts,maintenance_overlap_conflicts,wheel_machine_conflicts,service_capacity_conflicts,peak_wheel_tuning_trains,peak_trains_on_service
+218,104,114,4,110,0,0,0,1,5
