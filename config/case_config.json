@@ -168,6 +168,16 @@
       "after_maintenance"
     ]
   },
+  "service_blocks": {
+    "strategy": "time_blocks_assumption",
+    "max_duration_hours": 4,
+    "supported_cycles": [
+      "IS510",
+      "IS520",
+      "IS530",
+      "IS540"
+    ]
+  },
   "optimization_priorities": [
     "operational_readiness",
     "depot_load_leveling"
