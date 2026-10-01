@@ -1,0 +1,4 @@
+scope,total_jobs,scheduled_jobs,unscheduled_jobs,maintenance_overlap_conflicts,facility_capacity_conflicts,peak_trains_cleaning
+all,12753,12711,42,41,1,4
+Moscow,6540,6526,14,14,0,4
+Saint Petersburg,6213,6185,28,27,1,4
