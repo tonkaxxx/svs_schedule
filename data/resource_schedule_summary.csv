@@ -1,0 +1,4 @@
+scope,total_jobs,scheduled_jobs,unscheduled_jobs,resource_conflicts,peak_trains_on_service
+all,2812,2556,256,0,5
+inspection_and_service,2767,2556,211,0,5
+revision,45,0,45,0,0
